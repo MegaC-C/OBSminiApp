@@ -283,8 +283,8 @@ class MyViewModel @Inject constructor(
                 )
             ) {
                 deleteTrack(trackName) // only when upload was successful
-                _isUploading.value = false
-            } else _isUploading.value = false
+            }
+            _isUploading.value = false
         }
     }
 
