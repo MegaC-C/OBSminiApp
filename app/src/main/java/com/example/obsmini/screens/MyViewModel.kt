@@ -146,6 +146,9 @@ class MyViewModel @Inject constructor(
     private val _savedTracks = MutableStateFlow(listOf(""))
     val savedTracks = _savedTracks.asStateFlow()
 
+    private val _isUploading = MutableStateFlow(false)
+    val isUploading = _isUploading.asStateFlow()
+
     // ------------------------------ BleDataLogic ------------------------------
     private val _batteryVoltageV = MutableStateFlow("")
     val batteryVoltageV = _batteryVoltageV.asStateFlow()
@@ -270,6 +273,7 @@ class MyViewModel @Inject constructor(
 
     // ------------------------------ FileLogic ------------------------------
     fun uploadTrack(trackName: String) {
+        _isUploading.value = true
         val track = File(fileWriter.directory, trackName)
         viewModelScope.launch {
             if (repository.uploadTrack(
@@ -279,7 +283,8 @@ class MyViewModel @Inject constructor(
                 )
             ) {
                 deleteTrack(trackName) // only when upload was successful
-            }
+                _isUploading.value = false
+            } else _isUploading.value = false
         }
     }
 
