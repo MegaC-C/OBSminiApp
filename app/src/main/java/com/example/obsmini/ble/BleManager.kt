@@ -140,14 +140,14 @@ class BleManagerImpl @Inject constructor(
 
         override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
             super.onServicesDiscovered(gatt, status)
-            coroutineScope.launch { data.emit(Resource.Loading(message = "Adjusting MTU space...")) }
+            coroutineScope.launch { data.emit(Resource.Loading(message = "OBSmini discovered...")) }
             gatt.requestMtu(517) // request maximum MTU
         }
 
         override fun onMtuChanged(gatt: BluetoothGatt, mtu: Int, status: Int) {
             super.onMtuChanged(gatt, mtu, status)
+            coroutineScope.launch { data.emit(Resource.Loading(message = "MTU adjusted to $mtu")) }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                coroutineScope.launch { data.emit(Resource.Loading(message = "Adjusting Phy to long range...")) }
                 gatt.setPreferredPhy(
                     BluetoothDevice.PHY_LE_1M_MASK,
                     BluetoothDevice.PHY_LE_1M_MASK,
@@ -159,6 +159,7 @@ class BleManagerImpl @Inject constructor(
         override fun onPhyUpdate(gatt: BluetoothGatt, txPhy: Int, rxPhy: Int, status: Int) {
             super.onPhyUpdate(gatt, txPhy, rxPhy, status)
             if (status == BluetoothGatt.GATT_SUCCESS) {
+                coroutineScope.launch { data.emit(Resource.Loading(message = "PHY adjusted to $rxPhy")) }
                 enableNotification()
             }
         }

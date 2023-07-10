@@ -336,7 +336,7 @@ class MyViewModel @Inject constructor(
         buffer.order(ByteOrder.LITTLE_ENDIAN)
         val decodedValues = mutableListOf<Int>()
         while (buffer.hasRemaining()) {
-            val encodedValue = buffer.short.toInt()
+            val encodedValue = buffer.short.toUShort().toInt()
             decodedValues.add(encodedValue)
         }
 

@@ -3,9 +3,9 @@ package com.example.obsmini
 import android.Manifest
 import android.os.Build
 
-const val DEVICE_NAME = "Nordic_LBS"
-const val OBS_SERVICE_UIID = "00001523-1212-efde-1523-785feabcd123"
-const val OBS_CHARACTERISTICS_UUID = "00001524-1212-efde-1523-785feabcd123"
+const val DEVICE_NAME = "OBSmini"
+const val OBS_SERVICE_UIID = "24749e30-a637-4fd1-9040-5a1b76932cf2"
+const val OBS_CHARACTERISTICS_UUID = "24749e31-a637-4fd1-9040-5a1b76932cf2"
 const val CCCD_DESCRIPTOR_UUID = "00002902-0000-1000-8000-00805F9B34FB"
 const val FIRMWARE_VERSION = "v0.17"
 const val MAX_DISTANCE_cm = 300
