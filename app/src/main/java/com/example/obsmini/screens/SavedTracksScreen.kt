@@ -46,7 +46,7 @@ fun SavedTrackScreen(
                 ElevatedCard(modifier = Modifier.padding(4.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         IconButton(onClick = { viewModel.uploadTrack(savedTracks[index]) }) {
-                            Icon(Icons.Rounded.Upload, null)
+                            Icon(Icons.Rounded.Upload, null, tint = MaterialTheme.colorScheme.primary)
                         }
                         Text(text = savedTracks[index])
                         IconButton(onClick = { viewModel.deleteTrack(savedTracks[index]) }) {
