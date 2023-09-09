@@ -367,9 +367,9 @@ class MyViewModel @Inject constructor(
 
         // find the smallest distance and corresponding measurement
         _minLeftDistanceCmNew.value = leftDistancesList.min() / FACTOR
-        minLeftIndexNew = leftDistancesList.indexOf(minLeftDistanceCmNew.value) + 1 // in myTrack.csv the index n starts at 1
+        minLeftIndexNew = leftDistancesList.indexOf(leftDistancesList.min()) + 1 // in myTrack.csv the index n starts at 1
         _minRightDistanceCmNew.value = rightDistancesList.min() / FACTOR
-        minRightIndex = rightDistancesList.indexOf(minRightDistanceCmNew.value) + 1
+        minRightIndex = rightDistancesList.indexOf(rightDistancesList.min()) + 1
 
         smallestLeftDistanceInLastThreeSecondsList.removeLast()
         smallestLeftDistanceInLastThreeSecondsList.add(0, minLeftDistanceCmNew.value)
